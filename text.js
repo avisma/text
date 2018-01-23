@@ -28,6 +28,30 @@ const scene = new THREE.Scene();
 // Add the camera to the scene.
 scene.add(camera);
 
+// Set up the sphere vars
+const RADIUS = 50;
+const SEGMENTS = 16;
+const RINGS = 16;
+
+// Create a new mesh with
+// sphere geometry - we will cover
+// the sphereMaterial next!
+const sphere = new THREE.Mesh(
+
+  new THREE.SphereGeometry(
+    RADIUS,
+    SEGMENTS,
+    RINGS),
+
+  sphereMaterial);
+
+// Move the Sphere back in Z so we
+// can see it.
+sphere.position.z = -300;
+
+// Finally, add the sphere to the scene.
+scene.add(sphere);
+
 // Start the renderer.
 renderer.setSize(WIDTH, HEIGHT);
 
