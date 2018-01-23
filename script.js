@@ -27,55 +27,39 @@ document.body.appendChild( renderer.domElement );
 
 // Create a Cube Mesh with basic material
 
-var loader = new THREE.FontLoader();
-
-var geometry;
-
-loader.load( 'opensans.json', function ( font ) {
-
-	geometry = new THREE.TextGeometry( 'Hello three.js!', {
-		font: font,
-		size: 80,
-		height: 5,
-		curveSegments: 12,
-		bevelEnabled: true,
-		bevelThickness: 10,
-		bevelSize: 8,
-		bevelSegments: 5
-	} );
-} );
-
-
-// var geometry = new THREE.TextGeometry( 1, 1, 1 );
-var material = new THREE.MeshPhongMaterial({
-    color: 0xdddddd
-});
-
-var lights = [];
-			lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-			lights[ 1 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-			lights[ 2 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-
-			lights[ 0 ].position.set( 0, 200, 0 );
-			lights[ 1 ].position.set( 100, 200, 100 );
-			lights[ 2 ].position.set( - 100, - 200, - 100 );
-
-			scene.add( lights[ 0 ] );
-			scene.add( lights[ 1 ] );
-			scene.add( lights[ 2 ] );
+// var loader = new THREE.FontLoader();
+//
+// var geometry;
+//
+// loader.load( 'opensans.json', function ( font ) {
+//
+// 	geometry = new THREE.TextGeometry( 'Hello three.js!', {
+// 		font: font,
+// 		size: 80,
+// 		height: 5,
+// 		curveSegments: 12,
+// 		bevelEnabled: true,
+// 		bevelThickness: 10,
+// 		bevelSize: 8,
+// 		bevelSegments: 5
+// 	} );
+// } );
 
 
-var text = new THREE.Mesh( geometry, material );
+// Create a Cube Mesh with basic material
+var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
+var cube = new THREE.Mesh( geometry, material );
 
 // Add cube to Scene
-scene.add( text );
+scene.add( cube );
 
 // Render Loop
 var render = function () {
   requestAnimationFrame( render );
 
-  text.rotation.x += 0.01;
-  text.rotation.y += 0.01;
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
 
   // Render the scene
   renderer.render(scene, camera);
