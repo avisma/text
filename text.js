@@ -43,6 +43,8 @@ function render() {
    // mesh.rotation.x += 0.01;
    // mesh.rotation.y += 0.01;
 
+   camera.position.z += 1
+
     //delta += 0.1;
     //geometry.vertices[0].x = -25 + Math.sin(delta) * 50;
     //geometry.verticesNeedUpdate = true;
