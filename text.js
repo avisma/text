@@ -28,6 +28,13 @@ const scene = new THREE.Scene();
 // Add the camera to the scene.
 scene.add(camera);
 
+// create the sphere's material
+const sphereMaterial =
+  new THREE.MeshLambertMaterial(
+    {
+      color: 0xCC0000
+    });
+
 // Set up the sphere vars
 const RADIUS = 50;
 const SEGMENTS = 16;
@@ -51,13 +58,6 @@ sphere.position.z = -300;
 
 // Finally, add the sphere to the scene.
 scene.add(sphere);
-
-// create the sphere's material
-const sphereMaterial =
-  new THREE.MeshLambertMaterial(
-    {
-      color: 0xCC0000
-    });
 
 // Start the renderer.
 renderer.setSize(WIDTH, HEIGHT);
