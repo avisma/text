@@ -52,6 +52,13 @@ sphere.position.z = -300;
 // Finally, add the sphere to the scene.
 scene.add(sphere);
 
+// create the sphere's material
+const sphereMaterial =
+  new THREE.MeshLambertMaterial(
+    {
+      color: 0xCC0000
+    });
+
 // Start the renderer.
 renderer.setSize(WIDTH, HEIGHT);
 
