@@ -22,12 +22,13 @@ var light = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(light);
 
 var light2 = new THREE.PointLight(0xffffff, 0.5);
+
 scene.add(light2);
 
 var loader = new THREE.FontLoader();
 let font = loader.parse(fontJSON);
-var geometry = new THREE.TextGeometry("hello world", {font: font, size: 120, height: 10, material: 0, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
-
+let text = "MEMES";
+var geometry = new THREE.TextGeometry(text, {font: font, size: 120, height: 10, material: 0, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
 var material = new THREE.MeshLambertMaterial({color: 0xF3FFE2});
 var mesh = new THREE.Mesh(geometry, material);
 mesh.position.z = -100;
@@ -39,11 +40,44 @@ camera.position.set(425, 30, 900);
 render();
 
 var delta = 0;
+var angle = 0;
+var radius = 1;
+var reached_far = false;
+var reached_near = false;
+var position = 10;
+
 function render() {
    // mesh.rotation.x += 0.01;
    // mesh.rotation.y += 0.01;
 
-   camera.position.z += 1
+   if (!reached_far && !reached_near) {
+     camera.position.z += 10;
+   } else if (reached_far && !reached_near) {
+     camera.position.z -= 10;
+   } else if (reached_far && reached_near) {
+     reached_far = false;
+     reached_near = false;
+     camera.position.z += 10;
+   }
+
+   if (camera.position.z == 3000) {
+     reached_far = true;
+   }
+
+   if (camera.position.z == 900) {
+     reached_near = true;
+   }
+
+
+   // camera.position.x += radius * Math.sin(angle);
+   // angle += 0.01;
+   // text = "(" + camera.position.x + ", " + camera.position.y + ", " + camera.position.z + ")" ;
+
+   scene.remove(mesh);
+   geometry = new THREE.TextGeometry(text, {font: font, size: 120, height: 10, material: 0, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
+   material = new THREE.MeshLambertMaterial({color: 0xF3FFE2});
+   mesh = new THREE.Mesh(geometry, material);
+   scene.add(mesh);
 
     //delta += 0.1;
     //geometry.vertices[0].x = -25 + Math.sin(delta) * 50;
