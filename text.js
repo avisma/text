@@ -26,13 +26,25 @@ scene.add(light2);
 let loader = new THREE.FontLoader();
 let font = loader.parse(fontJSON);
 let text = "MEMES";
-let geometry = new THREE.TextGeometry(text, {font: font, size: 120, height: 10, material: 0, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
-let material = new THREE.MeshLambertMaterial({color: 0xF3FFE2});
+let geometry = new THREE.TextGeometry(text, {font: font, size: 120, height: 10, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
+//let material = new THREE.MeshLambertMaterial({color: 0xF3FFE2});
+//let material = new THREE.MeshNormalMaterial();
+//let material = new THREE.MeshPhongMaterial({shininess: 1});
+// let material = new THREE.MeshStandardMaterial({metalness: 0, roughness: 0.5});
+let uniforms = {
+  delta: {value: 0}
+};
+
+let material = new THREE.ShaderMaterial({
+  uniforms: uniforms,
+	vertexShader: document.getElementById( 'vertexShader' ).textContent,
+	fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+});
 let mesh = new THREE.Mesh(geometry, material);
 mesh.position.z = -100;
 
 scene.add(mesh);
-camera.position.set(425, 30, 900);
+camera.position.set(300, 30, 900);
 
 let delta = 0;
 let angle = 0;
@@ -44,6 +56,12 @@ let position = 10;
 function render() {
    // mesh.rotation.x += 0.01;
    // mesh.rotation.y += 0.01;
+
+   delta += 0.1;
+   // camera.rotation.y += 0.1;
+   camera.rotation.z += 0.1;
+
+    mesh.material.uniforms.delta.value = 0.5 + Math.sin(delta) * 0.5;
 
    if (!reached_far && !reached_near) {
      camera.position.z += 10;
@@ -69,7 +87,11 @@ function render() {
 
    scene.remove(mesh);
    geometry = new THREE.TextGeometry(text, {font: font, size: 120, height: 10, material: 0, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
-   material = new THREE.MeshLambertMaterial({color: 0xF3FFE2});
+   //material = new THREE.MeshLambertMaterial({color: 0xF3FFE2});
+   // material = new THREE.ShaderMaterial({
+   // 	vertexShader: document.getElementById( 'vertexShader' ).textContent,
+   // 	fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+   // });
    mesh = new THREE.Mesh(geometry, material);
    scene.add(mesh);
 
