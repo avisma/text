@@ -86,7 +86,7 @@ function render() {
    // text = "(" + camera.position.x + ", " + camera.position.y + ", " + camera.position.z + ")" ;
 
    scene.remove(mesh);
-   geometry = new THREE.TextGeometry(text, {font: font, size: 120, height: 10, material: 0, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
+   geometry = new THREE.TextGeometry(textString, {font: font, size: 120, height: 10, material: 0, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
    //material = new THREE.MeshLambertMaterial({color: 0xF3FFE2});
    // material = new THREE.ShaderMaterial({
    // 	vertexShader: document.getElementById( 'vertexShader' ).textContent,
