@@ -36,6 +36,7 @@ scene.add(light2);
 let vertexShaderFile;
 let fragmentShaderFile;
 let delta = 0;
+let textString = "MEMES";
 let material = new THREE.MeshLambertMaterial({
   color: 0xF3FFE2
 });
@@ -82,7 +83,7 @@ const main = function(responses) {
   let fontGentilis = loader.parse(gentilisJSON);
   let fontComicSans = loader.parse(comicsansJSON);
   let font = fontHelvetiker;
-  let textString = "MEMES";
+  textString = "MEMES";
   let geometry = new THREE.TextGeometry(textString, {
     font: font,
     size: 120,
