@@ -45,6 +45,9 @@ let uniforms = {
   delta: {value: 0}
 };
 
+console.log(vertexShaderFile);
+console.log(fragmentShaderFile);
+
 let material = new THREE.ShaderMaterial({
   uniforms: uniforms,
 	vertexShader: document.getElementById( 'vertexShader' ).textContent,

@@ -1,7 +1,6 @@
 <html>
 <head>
     <title>threejs - geometry</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
     	body {
     		margin: 0;
@@ -13,7 +12,7 @@
 
 <canvas id="myCanvas"></canvas>
 
-<script src="three.js"></script>
+
 <script type="x-shader/x-vertex" id="vertexShader">
   uniform float delta;
   varying vec3 vUv;
@@ -35,11 +34,14 @@
     gl_FragColor = vec4(r, g, b, 1);
   }
 </script>
+<script src="three.js"></script>            <!-- 3D JS library built on WebGL -->
+<script src="jquery.min.js"></script>       <!-- includes helpful methods -->
 <script src="iterator.js"></script>			    <!-- enables mode switching -->
 <script src="font/helvetiker.js"></script>	<!-- default font -->
 <script src="font/optimer.js"></script>		  <!-- additional font -->
 <script src="font/gentilis.js"></script>		<!-- additional font -->
 <script src="font/comicsans.js"></script>		<!-- additional font -->
+<script src="loadShaders.js"></script>      <!-- load shaders -->
 <script src="text.js"></script>			        <!-- main code -->
 <script src="keypress.js"></script>			    <!-- detects keypresses -->
 </body>
