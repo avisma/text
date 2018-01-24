@@ -1,4 +1,4 @@
-var fontJSON = {
+var helvetikerJSON = {
 "glyphs": {
   "ο": {
     "x_min": 0,
