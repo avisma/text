@@ -8,13 +8,13 @@
     let initial = true;
     $(document).keypress(function(event) {
 
-      // if (textString.includes("MEMES") && initial) {
-      //   textString = "";
-      //   initial = false;
-      // }
+      if (textString.includes("MEMES") && initial) {
+        textString = "";
+        initial = false;
+      }
 
       if (event.which === 8) {
-        alert("ALERT");
+        // alert("ALERT");
         event.preventDefault();
         textString = textString.substring(0, textString.length - 1);
       } else {
