@@ -80,18 +80,15 @@ $(function () {
       let font = fontHelvetiker;
       let textString = "MEMES";
       let geometry = new THREE.TextGeometry(textString, {font: font, size: 120, height: 10, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
-      //let material = new THREE.MeshLambertMaterial({color: 0xF3FFE2});
-      //let material = new THREE.MeshNormalMaterial();
-      //let material = new THREE.MeshPhongMaterial({shininess: 1});
-      // let material = new THREE.MeshStandardMaterial({metalness: 0, roughness: 0.5});
+
       let uniforms = {
         delta: {value: 0}
       };
 
       let material = new THREE.ShaderMaterial({
         uniforms: uniforms,
-      	vertexShader: document.getElementById( 'vertexShader' ).textContent,
-      	fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+      	vertexShader: vertexShaderFile,
+      	fragmentShader: fragmentShaderFile
       });
       let mesh = new THREE.Mesh(geometry, material);
       mesh.position.z = -100;
@@ -154,24 +151,14 @@ $(function () {
          }
          text2.innerHTML = mode.value;
          geometry = new THREE.TextGeometry(textString, {font: font, size: 120, height: 10, material: 0, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
-         //material = new THREE.MeshLambertMaterial({color: 0xF3FFE2});
-         // material = new THREE.ShaderMaterial({
-         // 	vertexShader: document.getElementById( 'vertexShader' ).textContent,
-         // 	fragmentShader: document.getElementById( 'fragmentShader' ).textContent
-         // });
          mesh = new THREE.Mesh(geometry, material);
          pivot.add(mesh);
-
-          //delta += 0.1;
-          //geometry.vertices[0].x = -25 + Math.sin(delta) * 50;
-          //geometry.verticesNeedUpdate = true;
 
         renderer.render(scene, camera);
 
         requestAnimationFrame(render);
 
       }
-
 
       var text2 = document.createElement('div');
       text2.style.position = 'absolute';
