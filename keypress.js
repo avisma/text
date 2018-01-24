@@ -23,7 +23,5 @@
           textString += character;
         }
       }
-
-      // alert(textString);
     });
   });

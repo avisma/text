@@ -11,19 +11,19 @@ $(function () {
   let modeIterator = makeIterator(modes);
   let mode = modeIterator.next();
 
-  //RENDERER
+  // RENDERER
   renderer = new THREE.WebGLRenderer({canvas: myCanvas, antialias: true});
   renderer.setClearColor(0x000000);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
 
-  //CAMERA
+  // CAMERA
   camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 10000);
 
-  //SCENE
+  // SCENE
   scene = new THREE.Scene();
 
-  //LIGHTS
+  // LIGHTS
   let light = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(light);
 
@@ -31,6 +31,7 @@ $(function () {
 
   scene.add(light2);
 
+  // Sets up shader variables for fetching external files
   let vertexShaderFile;
   let fragmentShaderFile;
   let delta = 0;
@@ -106,11 +107,8 @@ $(function () {
       let position = 10;
 
       function render() {
-         // mesh.rotation.x += 0.01;
-         // mesh.rotation.y += 0.01;
-
          delta += 0.1;
-         // camera.rotation.y += 0.1;
+
          camera.rotation.z += 0.01;
          pivot.rotation.y = 19.5;
 
