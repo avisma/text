@@ -1,5 +1,3 @@
-$(function () {
-
   let renderer,
     scene,
     camera,
@@ -35,6 +33,7 @@ $(function () {
   let vertexShaderFile;
   let fragmentShaderFile;
   let delta = 0;
+  let textString = "MEMES";
   let material = new THREE.MeshLambertMaterial({color: 0xF3FFE2});
 
   const readFile = function (file) {
@@ -79,7 +78,7 @@ $(function () {
       let fontGentilis = loader.parse(gentilisJSON);
       let fontComicSans = loader.parse(comicsansJSON);
       let font = fontHelvetiker;
-      let textString = "MEMES";
+      textString = "MEMES";
       let geometry = new THREE.TextGeometry(textString, {font: font, size: 120, height: 10, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
 
       let uniforms = {
@@ -176,5 +175,3 @@ $(function () {
   };
 
   bothLoaded.then(main);
-
-});
