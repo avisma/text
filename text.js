@@ -3,11 +3,14 @@ let renderer,
   camera,
   myCanvas = document.getElementById('myCanvas');
 
-let modes = [];
-// modes.lighting = [];
-modes = ['helvetiker', 'optimer', 'gentilis', 'comic sans'];
+let modes = ['helvetiker', 'optimer', 'gentilis', 'comic sans'];
 let modeIterator = makeIterator(modes);
 let mode = modeIterator.next();
+
+let fontLabel = document.createElement('div');
+fontLabel.innerHTML = mode.value;
+fontLabel.id = "fontLabel"
+document.body.appendChild(fontLabel);
 
 // RENDERER
 renderer = new THREE.WebGLRenderer({
@@ -150,16 +153,19 @@ const main = function(responses) {
 
     pivot.remove(mesh);
 
-    if (mode.value.includes("helvetiker")) {
+    if ((mode.value.includes("helvetiker")) && !fontLabel.innerText.includes("helvetiker")) {
       font = fontHelvetiker;
-    } else if (mode.value.includes("optimer")) {
+      fontLabel.innerText = mode.value;
+    } else if ((mode.value.includes("optimer")) && (!fontLabel.innerText.includes("optimer"))) {
       font = fontOptimer;
-    } else if (mode.value.includes("gentilis")) {
+      fontLabel.innerText = mode.value;
+    } else if ((mode.value.includes("gentilis")) && (!fontLabel.innerText.includes("gentilis"))) {
       font = fontGentilis;
-    } else if (mode.value.includes("comic sans")) {
+      fontLabel.innerText = mode.value;
+    } else if ((mode.value.includes("comic sans")) && (!fontLabel.innerText.includes("comic sans"))){
       font = fontComicSans;
+      fontLabel.innerText = mode.value;
     }
-    text2.innerHTML = mode.value;
     geometry = new THREE.TextGeometry(textString, {
       font: font,
       size: 120,
@@ -177,11 +183,7 @@ const main = function(responses) {
 
   }
 
-  let fontLabel = $("#fontLabel");
-
-  fontLabel.innerHTML = mode.value;
-
-  // document.body.appendChild(text2);
+  // document.body.appendChild(fontLabel);
 
   //RENDER LOOP
   render();
