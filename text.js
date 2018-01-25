@@ -9,7 +9,7 @@ let mode = modeIterator.next();
 
 let fontLabel = document.createElement('div');
 fontLabel.innerHTML = mode.value;
-fontLabel.id = "fontLabel"
+fontLabel.id = "fontLabel";
 document.body.appendChild(fontLabel);
 
 // RENDERER
@@ -166,6 +166,7 @@ const main = function(responses) {
       font = fontComicSans;
       fontLabel.innerText = mode.value;
     }
+
     geometry = new THREE.TextGeometry(textString, {
       font: font,
       size: 120,

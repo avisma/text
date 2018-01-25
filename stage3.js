@@ -8,6 +8,11 @@ let renderer,
   let modeIterator = makeIterator(modes);
   let mode = modeIterator.next();
 
+  let fontLabel = document.createElement('div');
+  fontLabel.innerHTML = mode.value;
+  fontLabel.id = "fontLabel";
+  document.body.appendChild(fontLabel);
+
   // RENDERER
   renderer = new THREE.WebGLRenderer({canvas: myCanvas, antialias: true});
   renderer.setClearColor(0x000000);
@@ -76,16 +81,19 @@ let renderer,
 
     pivot.remove(mesh);
 
-    if (mode.value.includes("helvetiker")) {
+    if ((mode.value.includes("helvetiker")) && !fontLabel.innerText.includes("helvetiker")) {
       font = fontHelvetiker;
-    } else if (mode.value.includes("optimer")) {
+      fontLabel.innerText = mode.value;
+    } else if ((mode.value.includes("optimer")) && (!fontLabel.innerText.includes("optimer"))) {
       font = fontOptimer;
-    } else if (mode.value.includes("gentilis")) {
+      fontLabel.innerText = mode.value;
+    } else if ((mode.value.includes("gentilis")) && (!fontLabel.innerText.includes("gentilis"))) {
       font = fontGentilis;
-    } else if (mode.value.includes("comic sans")) {
+      fontLabel.innerText = mode.value;
+    } else if ((mode.value.includes("comic sans")) && (!fontLabel.innerText.includes("comic sans"))){
       font = fontComicSans;
+      fontLabel.innerText = mode.value;
     }
-    text2.innerHTML = mode.value;
     geometry = new THREE.TextGeometry(textString, {font: font, size: 120, height: 10, material: 0, bevelThickness: 1, extrudeMaterial: 1});  //TextGeometry(text, parameters)
     mesh = new THREE.Mesh(geometry, material);
     pivot.add(mesh);
@@ -95,18 +103,6 @@ let renderer,
     requestAnimationFrame(render);
 
   }
-
-  var text2 = document.createElement('div');
-  text2.style.position = 'absolute';
-  //text2.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
-  text2.style.width = 100;
-  text2.style.height = 20;
-  // text2.style.backgroundColor = "blue";
-  text2.style.color = "white";
-  text2.innerHTML = mode.value;
-  text2.style.bottom = 50 + 'px';
-  text2.style.left = 50 + 'px';
-  document.body.appendChild(text2);
 
   //RENDER LOOP
   render();
